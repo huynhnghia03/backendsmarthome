@@ -128,10 +128,14 @@ require("dotenv").config(); // Nạp các biến môi trường từ file .env
 const nodemailer = require("nodemailer");
 const rateLimit = require("express-rate-limit");
 const express = require("express");
-
+const cors = require('cors')
 const app = express();
 app.use(express.json());
-
+app.use(cors({
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 200
+  }))
 // Email Config từ .env
 const transporter = nodemailer.createTransport({
   service: "gmail",
