@@ -11,6 +11,7 @@ app.use(cors({
     credentials: true,
     optionsSuccessStatus: 200
   }))
+const PORT = process.env.PORT
 // Email Config từ .env
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -58,3 +59,7 @@ export default async function handler(req, res) {
 app.get('/', (req, res) => {
     res.send('Socket.IO server is running');
 });
+
+app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}`)
+  })
