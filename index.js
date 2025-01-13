@@ -1,8 +1,9 @@
-require('dotenv').config()
-const nodemailer = require("nodemailer");
-const rateLimit = require("express-rate-limit");
-const express = require("express");
-const cors = require('cors')
+import dotenv from 'dotenv';
+dotenv.config();
+import nodemailer from "nodemailer";
+import rateLimit from "express-rate-limit";
+import express from "express";
+import cors from 'cors'
 const app = express();
 app.use(express.json());
 app.use(cors({
