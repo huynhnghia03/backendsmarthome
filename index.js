@@ -29,7 +29,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-export default async function handler(req, res) {
+app.get('/notify', async (req, res)=> {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -55,7 +55,8 @@ export default async function handler(req, res) {
     console.error("Error:", error);
     res.status(500).json({ success: false, error: "Failed to send notification" });
   }
-}
+})
+
 app.get('/', (req, res) => {
     res.send('Socket.IO server is running');
 });
