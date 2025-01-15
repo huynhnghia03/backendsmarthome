@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
 // Kiểm soát lưu lượng (rate limit) để tránh quá tải
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 phút
-  max: 3, // Tối đa 3 yêu cầu trong 1 phút
+  max: 5, // Tối đa 3 yêu cầu trong 1 phút
   message: "Quá nhiều yêu cầu, vui lòng thử lại sau.",
 });
 app.use(limiter);
