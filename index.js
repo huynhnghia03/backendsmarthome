@@ -7,10 +7,8 @@ import cors from 'cors'
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: process.env.ESP_URL,
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-    optionsSuccessStatus: 200
+  origin: "*",
+    methods: "GET,POST",
   }))
 const PORT = process.env.PORT
 // Email Config từ .env
@@ -59,7 +57,7 @@ app.post('/notify', async (req, res)=> {
 })
 
 app.get('/', (req, res) => {
-    res.send('Socket.IO server is running');
+    res.send(' server is running');
 });
 
 app.listen(PORT, () => {
