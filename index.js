@@ -18,7 +18,6 @@ app.use(
     methods: "GET,POST",
   })
 );
-app.set('trust proxy', 1); // Cấu hình Express tin tưởng proxy
 app.use(express.static(path.join(__dirname, 'static')));
 
 // Kết nối MongoDB
