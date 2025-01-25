@@ -18,7 +18,6 @@ app.use(
     methods: "GET,POST",
   })
 );
-app.use(express.static(path.join(__dirname, 'static')));
 
 // Kết nối MongoDB
 const dbUri = process.env.MONGO_URI;
