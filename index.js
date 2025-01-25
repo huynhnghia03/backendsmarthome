@@ -127,9 +127,9 @@ app.post("/notify", upload.single("image"), async (req, res) => {
       `,
       attachments: [
         {
-          filename: "alert-logo.png",
-          path: "logo.png", // Đường dẫn tới ảnh logo trên server
-          cid: "alert-logo", // ID của ảnh trong HTML
+          // filename: "alert-logo.png",
+          // path: "logo.png", // Đường dẫn tới ảnh logo trên server
+          // cid: "alert-logo", // ID của ảnh trong HTML
         },
         ...(req.file
           ? [
