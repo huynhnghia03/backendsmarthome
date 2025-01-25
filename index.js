@@ -39,11 +39,13 @@ const Image = mongoose.model("Image", ImageSchema);
 // Cấu hình lưu trữ với multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = "uploads";
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir);
-    }
-    cb(null, dir);
+    // const dir = "uploads";
+    // if (!fs.existsSync(dir)) {
+    //   fs.mkdirSync(dir);
+    // }
+    // cb(null, dir);
+    const tmpDir = '/tmp'; // Sử dụng thư mục tạm thời của Vercel
+    cb(null, tmpDir);
   },
   filename: (req, file, cb) => {
     const timestamp = Date.now();
