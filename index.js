@@ -210,8 +210,8 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 
-const logoPath = "/static/logo.png"; // Không cần cấu hình express.static
-const logoAlert = "/static/alert-logo.png";
+const logoPath = "/public/static/logo.png"; // Không cần cấu hình express.static
+const logoAlert = "/public/static/alert-logo.png";
 const app = express();
 app.use(express.json());
 app.set("trust proxy", 1); // Bật chế độ trust proxy
