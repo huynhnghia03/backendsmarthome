@@ -210,6 +210,8 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 
+const logoPath = "/static/logo.png"; // Không cần cấu hình express.static
+const logoAlert = "/static/alert-logo.png";
 const app = express();
 app.use(express.json());
 app.set("trust proxy", 1); // Bật chế độ trust proxy
@@ -221,7 +223,7 @@ app.use(
 );
 
 // Cấu hình file tĩnh
-app.use("/static", express.static(path.join(__dirname, "static")));
+// app.use("/static", express.static(path.join(__dirname, "static")));
 
 // Kết nối MongoDB
 const dbUri = process.env.MONGO_URI;
@@ -329,8 +331,8 @@ app.post("/notify", upload.single("image"), async (req, res) => {
       `,
       attachments: [
         {
-          filename: "/static/alert-logo.png",
-          path: "/static/logo.png", // Đường dẫn tới ảnh logo trên server
+          filename: logoAlert,
+          path: logoPath, // Đường dẫn tới ảnh logo trên server
           cid: "alert-logo", // ID của ảnh trong HTML
         },
         ...(imageUrl
