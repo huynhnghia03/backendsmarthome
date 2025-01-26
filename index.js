@@ -212,12 +212,16 @@ import path from "path";
 
 const app = express();
 app.use(express.json());
+app.set("trust proxy", 1); // Bật chế độ trust proxy
 app.use(
   cors({
     origin: "*",
     methods: "GET,POST",
   })
 );
+
+// Cấu hình file tĩnh
+app.use("/static", express.static(path.join(__dirname, "static")));
 
 // Kết nối MongoDB
 const dbUri = process.env.MONGO_URI;
