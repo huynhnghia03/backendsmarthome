@@ -210,8 +210,6 @@ import multer from "multer";
 import fs from "fs";
 import path from "path";
 
-const logoPath = "/public/static/logo.png"; // Không cần cấu hình express.static
-const logoAlert = "/public/static/alert-logo.png";
 const app = express();
 app.use(express.json());
 app.set("trust proxy", 1); // Bật chế độ trust proxy
@@ -331,8 +329,8 @@ app.post("/notify", upload.single("image"), async (req, res) => {
       `,
       attachments: [
         {
-          filename: logoAlert,
-          path: logoPath, // Đường dẫn tới ảnh logo trên server
+          // filename: logoAlert,
+          // path: logoPath, // Đường dẫn tới ảnh logo trên server
           cid: "alert-logo", // ID của ảnh trong HTML
         },
         ...(imageUrl
