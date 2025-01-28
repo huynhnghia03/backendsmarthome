@@ -33,6 +33,7 @@ const ImageSchema = new mongoose.Schema({
   filename: String,
   originalname: String,
   path: String,
+imageUrl:String,
   createdAt: { type: Date, default: Date.now },
 });
 
