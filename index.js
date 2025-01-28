@@ -7,7 +7,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import multer from "multer";
 import fs from "fs";
-
+import cloudinary from "cloudinary";
 const app = express();
 app.use(express.json());
 app.set("trust proxy", 1); // Bật chế độ trust proxy
@@ -39,6 +39,11 @@ imageUrl:String,
 
 const Image = mongoose.model("Image", ImageSchema);
 
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 // Cấu hình lưu trữ với multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -82,16 +87,19 @@ app.post("/notify", upload.single("image"), async (req, res) => {
     // Lưu ảnh vào MongoDB
     let imageUrl = null;
     if (req.file) {
+      const result = await cloudinary.v2.uploader.upload(req.file.path, {
+        folder: "security-alerts", // Optional folder in Cloudinary
+      });
+      imageUrl = result.secure_url;
+
+      // Save image details in MongoDB
       const newImage = new Image({
-        filename: req.file.filename,
+        filename: result.public_id,
         originalname: req.file.originalname,
-        path: req.file.path,
-        imageUrl:""
+        path: result.secure_url,
+        imageUrl: result.secure_url,
       });
       await newImage.save();
-      imageUrl = `${req.protocol}://${req.get("host")}/images/${newImage._id}`;
-      // newImage.imageUrl=imageUrl
-      await Image.findByIdAndUpdate(newImage._id, { imageUrl });
     }
 
     // Gửi email
