@@ -102,7 +102,7 @@ app.post("/notify", upload.single("image"), async (req, res) => {
     // Gửi email
     const mailOptions = {
       from: `"Camera chống trộm"`, // Tên hệ thống
-      to: [process.env.EMAIL_TO, EMAIL_TO1, EMAIL_TO2].join(","),
+      to: [process.env.EMAIL_TO, process.env.EMAIL_TO1, process.env.EMAIL_TO2].join(","),
       subject: "🚨 Cảnh báo: Có người đột nhập 🚨",
       html: `
         <div style="font-family: Arial, sans-serif; color: #333;">
