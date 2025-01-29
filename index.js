@@ -18,9 +18,6 @@ app.use(
   })
 );
 
-// Cấu hình file tĩnh
-// app.use("/static", express.static(path.join(__dirname, "static")));
-
 // Kết nối MongoDB
 const dbUri = process.env.MONGO_URI;
 mongoose
